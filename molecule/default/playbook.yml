@@ -1,0 +1,23 @@
+---
+- name: Add deb repository with a gpg key from an url
+  hosts: all
+  vars:
+    deb_repository:
+      url: https://apt.syncthing.net/
+      options: syncthing stable
+    gpg_key:
+      key_url: https://syncthing.net/release-key.txt
+  roles:
+    - role: add-deb-repo
+
+- name: Add deb repository with a gpg key from a repository
+  hosts: all
+  vars:
+    deb_repository:
+      url: http://repo.mongodb.org/apt/{{ ansible_distribution | lower }} {{ ansible_distribution_release}}/mongodb-org/{{ mongod.version }}
+      options: multiverse
+    gpg_key:
+      url: hkp://keyserver.ubuntu.com
+      id: 0C49F3730359A14518585931BC711F9BA15703C6
+  roles:
+    - role: add-deb-repo

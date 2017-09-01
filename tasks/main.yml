@@ -1,0 +1,21 @@
+---
+# tasks file for add-deb-repo
+
+- name: Add repository by server url
+  apt_key:
+    keyserver: "{{ gpg_key.repo_url }}"
+    id: "{{ gpg_key.id }}"
+    state: present
+  when: gpg_key.repo_url
+
+- name: Add repository by server url
+  apt_key:
+    file: "{{ gpg_key.key_url }}"
+    state: present
+  when: gpg_key.key_url
+
+- name: Add repository
+  apt_repository:
+    repo: "deb {{ deb_repository.url }} {{ deb_repository.options}}"
+    state: present
+    update_cache: yes
