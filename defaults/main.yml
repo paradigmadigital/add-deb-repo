@@ -4,5 +4,5 @@ deb_repository:
   url:
   options:
 gpg_key:
-  url:
+  repository_url:
   id:
