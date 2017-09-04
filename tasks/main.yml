@@ -3,10 +3,10 @@
 
 - name: Add repository gpg key by server url
   apt_key:
-    keyserver: "{{ gpg_key.repo_url }}"
+    keyserver: "{{ gpg_key.repository_url }}"
     id: "{{ gpg_key.id }}"
     state: present
-  when: gpg_key.repo_url is defined
+  when: gpg_key.repository_url is defined
 
 - name: Add repository gpg key by key url
   apt_key:
