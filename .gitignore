@@ -1,5 +1,5 @@
 .*sw*
 .rope*
-pyc
+*pyc
 state.yml
 __pycache__
