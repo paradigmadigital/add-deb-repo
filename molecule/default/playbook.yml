@@ -1,4 +1,14 @@
 ---
+- name: Prepare the dockers to run the tests
+  hosts: all
+  tasks:
+    - name: Install packages
+      package:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - apt-transport-https
+
 - name: Add deb repository with a gpg key from an url
   hosts: all
   vars:
@@ -14,10 +24,10 @@
   hosts: all
   vars:
     deb_repository:
-      url: http://repo.mongodb.org/apt/{{ ansible_distribution | lower }} {{ ansible_distribution_release}}/mongodb-org/{{ mongod.version }}
+      url: http://repo.mongodb.org/apt/{{ ansible_distribution | lower }} {{ ansible_distribution_release}}/mongodb-org/3.4
       options: multiverse
     gpg_key:
-      url: hkp://keyserver.ubuntu.com
+      repo_url: hkp://keyserver.ubuntu.com
       id: 0C49F3730359A14518585931BC711F9BA15703C6
   roles:
     - role: add-deb-repo

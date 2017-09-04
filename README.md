@@ -5,7 +5,7 @@ Add deb repository. The gpg key can be added through `repository_url` or through
 
 ## Requirements
 
-None
+Have `apt-transport-https` installed
 
 ## Role Variables
 
