@@ -1,0 +1,8 @@
+---
+# defaults file for add-deb-repo
+deb_repository:
+  url:
+  options:
+gpg_key:
+  repository_url:
+  id:
