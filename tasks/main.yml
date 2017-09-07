@@ -2,7 +2,7 @@
 # tasks file for add-deb-repo
 
 - name: Add repository gpg key by server url
-  become: yes
+  become: true
   apt_key:
     keyserver: "{{ gpg_key.repository_url }}"
     id: "{{ gpg_key.id }}"
@@ -10,14 +10,14 @@
   when: gpg_key.repository_url is defined
 
 - name: Add repository gpg key by key url
-  become: yes
+  become: true
   apt_key:
     url: "{{ gpg_key.key_url }}"
     state: present
   when: gpg_key.key_url is defined
 
 - name: Add repository
-  become: yes
+  become: true
   apt_repository:
     repo: "deb {{ deb_repository.url }} {{ deb_repository.options}}"
     state: present
