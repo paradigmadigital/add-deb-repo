@@ -41,6 +41,14 @@ then
 molecule test --all
 ```
 
+The supported distros are:
+	- Debian 8
+	- Debian 9
+	- Centos 7
+	- Red Hat 7
+	- Ubuntu 14.04
+	- Ubuntu 16.04
+
 ## License
 
 GPLv2
