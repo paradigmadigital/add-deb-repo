@@ -1,0 +1,9 @@
+---
+repository:
+  name: Mariadb
+  description: Mariadb repository
+  url: "http://mariadb.mirrors.ovh.net/MariaDB/repo/10.2/{{ ansible_distribution | lower }} {{ ansible_distribution_release | lower }}"
+  options: main
+gpg_key:
+  repository_url: hkp://keyserver.ubuntu.com
+  id: F1656F24C74CD1D8
