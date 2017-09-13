@@ -1,5 +1,12 @@
 ---
 # tasks file for add-repo
+# apt_key needs this
+- name: Install apt-transport-https
+  become: yes
+  apt:
+    name: apt-transport-https
+    state: present
+
 - name: Add repository gpg key by server url
   become: true
   apt_key:
