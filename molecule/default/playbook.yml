@@ -62,7 +62,7 @@
   roles:
     - { role: add-repo, when: (ansible_distribution == 'Ubuntu') or (ansible_distribution == 'Debian') }
 
-- name: Add rpm repository with a gpg key from a repository
+- name: Add rpm repository with a gpg key without id checking
   hosts: all
   vars:
     repository:
@@ -72,10 +72,25 @@
       options: main
     gpg_key:
       key_url: https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+      gpgcheck: no
   roles:
     - { role: add-repo, when: (ansible_distribution == 'CentOS') or (ansible_distribution == 'RedHat') }
 
-- name: Add rpm repository with a gpg key from a repository
+- name: Add rpm repository with a gpg key with id checking
+  hosts: all
+  vars:
+    repository:
+      name: Mariadb
+      description: Mariadb repository
+      url: "https://yum.mariadb.org/10.2/{{ ansible_distribution }}{{ ansible_distribution_version }}-amd64"
+      options: main
+    gpg_key:
+      key_url: https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+      gpgcheck: yes
+  roles:
+    - { role: add-repo, when: (ansible_distribution == 'CentOS') or (ansible_distribution == 'RedHat') }
+
+- name: Add rpm repository without a gpg key
   hosts: all
   vars:
     repository:
