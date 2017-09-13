@@ -3,9 +3,21 @@
 ---
 all:
   hosts:
-    instance: &id001
+    centos_systemd: &id001
+      ansible_connection: docker
+    dramaturg_debian_systemd: &id002
+      ansible_connection: docker
+    geerlingguy_docker_debian9_ansible: &id003
+      ansible_connection: docker
+    solita_ubuntu_systemd: &id004
+      ansible_connection: docker
+    ubuntu_14_04: &id005
       ansible_connection: docker
 ungrouped:
   hosts:
-    instance: *id001
+    centos_systemd: *id001
+    dramaturg_debian_systemd: *id002
+    geerlingguy_docker_debian9_ansible: *id003
+    solita_ubuntu_systemd: *id004
+    ubuntu_14_04: *id005
   vars: {}

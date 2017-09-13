@@ -6,18 +6,43 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: instance
-    image: debian:7
-  - name: instance
-    image: debian:8
-  - name: instance
+  - name: geerlingguy_docker_debian9_ansible
+    image: geerlingguy/docker-debian9-ansible
+    privileged: True
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    command: sleep infinity
+
+  - name: dramaturg_debian_systemd
+    image: dramaturg/debian-systemd
+    privileged: True
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    command: sleep infinity
+
+  - name: centos_systemd
+    image: centos/systemd
+    privileged: True
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    command: sleep infinity
+
+  - name: solita_ubuntu_systemd
+    image: solita/ubuntu-systemd
+    privileged: True
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    command: sleep infinity
+
+  - name: ubuntu_14_04
     image: ubuntu:14.04
-  - name: instance
-    image: ubuntu:16.04
+
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
+  options:
+    extra-vars: force_docker=yes
 scenario:
   name: default
 verifier:
