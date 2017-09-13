@@ -1,6 +1,6 @@
 ---
-# defaults file for add-deb-repo
-deb_repository:
+# defaults file for add-repo
+repository:
   url:
   options:
 gpg_key:

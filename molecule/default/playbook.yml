@@ -12,7 +12,7 @@
 - name: Add deb repository with a gpg key from an url
   hosts: all
   vars:
-    deb_repository:
+    repository:
       url: https://apt.syncthing.net/
       options: syncthing stable
     gpg_key:
@@ -23,8 +23,8 @@
 - name: Add deb repository with a gpg key from a repository
   hosts: all
   vars:
-    deb_repository:
-      url: http://repo.mongodb.org/apt/{{ ansible_distribution | lower }} {{ ansible_distribution_release}}/mongodb-org/3.4
+    repository:
+      url: "http://repo.mongodb.org/apt/{{ ansible_distribution | lower }} trusty/mongodb-org/3.4"
       options: multiverse
     gpg_key:
       repository_url: hkp://keyserver.ubuntu.com
