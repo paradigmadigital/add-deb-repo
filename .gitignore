@@ -3,3 +3,4 @@
 *pyc
 state.yml
 __pycache__
+molecule/default/.cache
