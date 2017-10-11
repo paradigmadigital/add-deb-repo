@@ -10,4 +10,5 @@
   when: repository is undefined or gpg_key is undefined
 
 - name: Add the repository
-  include: "{{ role_path }}/tasks/{{ansible_distribution | lower}}.yml"
+  include_tasks: "{{ansible_distribution | lower}}.yml"
+  #include: "{{ role_path }}/tasks/{{ansible_distribution | lower}}.yml"

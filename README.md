@@ -5,7 +5,7 @@ Add repository. The gpg key can be added through `repository_url` or through
 
 ## Requirements
 
-Have `apt-transport-https` installed
+None
 
 ## Role Variables
 
@@ -40,7 +40,6 @@ then
 ```bash
 molecule test --all
 ```
-
 
 ## License
 

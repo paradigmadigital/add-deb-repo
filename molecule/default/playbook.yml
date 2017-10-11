@@ -1,18 +1,4 @@
 ---
-- name: Prepare the dockers to run the tests
-  hosts: all
-  tasks:
-    - name: Install packages
-      package:
-        name: "{{ item }}"
-        state: present
-      with_items:
-        - apt-transport-https
-      when:
-        ansible_distribution == 'Debian'
-        or
-        ansible_distribution == 'Ubuntu'
-
 - name: Add deb repository with a gpg key from an url
   hosts: all
   vars:
@@ -24,7 +10,7 @@
   roles:
     - { role: add-repo, when: (ansible_distribution == 'Ubuntu') or (ansible_distribution == 'Debian') }
 
-- name: Add deb repository with a gpg key from a repository
+- name: Add deb repository with a gpg key from a repository for Ubuntu
   hosts: all
   vars:
     repository:
@@ -36,7 +22,7 @@
   roles:
     - { role: add-repo, when: ansible_distribution == 'Ubuntu' }
 
-- name: Add deb repository with a gpg key from a repository
+- name: Add deb repository with a gpg key from a repository for Debian
   hosts: all
   vars:
     repository:
@@ -48,20 +34,6 @@
   roles:
     - { role: add-repo, when: ansible_distribution == 'Debian' }
 
-- name: Add deb repository with a gpg key from a repository
-  hosts: all
-  vars:
-    repository:
-      name: Mariadb
-      description: Mariadb repository
-      url: "http://mariadb.mirrors.ovh.net/MariaDB/repo/10.2/{{ ansible_distribution | lower }} {{ ansible_distribution_release | lower }}"
-      options: main
-    gpg_key:
-      repository_url: hkp://keyserver.ubuntu.com
-      id: F1656F24C74CD1D8
-  roles:
-    - { role: add-repo, when: (ansible_distribution == 'Ubuntu') or (ansible_distribution == 'Debian') }
-
 - name: Add rpm repository with a gpg key without id checking
   hosts: all
   vars:
@@ -69,7 +41,6 @@
       name: Mariadb
       description: Mariadb repository
       url: "https://yum.mariadb.org/10.2/{{ ansible_distribution }}{{ ansible_distribution_version }}-amd64"
-      options: main
     gpg_key:
       key_url: https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
       gpgcheck: no
@@ -83,7 +54,6 @@
       name: Mariadb
       description: Mariadb repository
       url: "https://yum.mariadb.org/10.2/{{ ansible_distribution }}{{ ansible_distribution_version }}-amd64"
-      options: main
     gpg_key:
       key_url: https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
       gpgcheck: yes
@@ -97,6 +67,5 @@
       name: Mariadb
       description: Mariadb repository
       url: "https://yum.mariadb.org/10.2/{{ ansible_distribution }}{{ ansible_distribution_version }}-amd64"
-      options: main
   roles:
     - { role: add-repo, when: (ansible_distribution == 'CentOS') or (ansible_distribution == 'RedHat') }
