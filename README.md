@@ -1,6 +1,6 @@
-# add-deb-repo
+# add-repo
 
-Add deb repository. The gpg key can be added through `repository_url` or through
+Add repository. The gpg key can be added through `repository_url` or through
 `key_url`
 
 ## Requirements
@@ -41,13 +41,6 @@ then
 molecule test --all
 ```
 
-The supported distros are:
-	- Debian 8
-	- Debian 9
-	- Centos 7
-	- Red Hat 7
-	- Ubuntu 14.04
-	- Ubuntu 16.04
 
 ## License
 
