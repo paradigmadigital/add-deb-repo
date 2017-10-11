@@ -3,14 +3,14 @@ galaxy_info:
   description: Add deb repository
   min_ansible_version: 2.2
   license: GPLv2
-
+The supported distros are:
   platforms:
-  #- name: CentOS
-  #  versions:
+  - name: CentOS
+    versions:
   #  - all
   #  - 5
   #  - 6
-  #  - 7
+    - 7
   #- name: EL
   #  versions:
   #  - all
