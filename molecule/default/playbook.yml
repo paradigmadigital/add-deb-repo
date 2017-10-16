@@ -67,5 +67,7 @@
       name: Mariadb
       description: Mariadb repository
       url: "https://yum.mariadb.org/10.2/{{ ansible_distribution }}{{ ansible_distribution_version }}-amd64"
+    gpg_key:
+      gpgcheck: no
   roles:
     - { role: add-repo, when: (ansible_distribution == 'CentOS') or (ansible_distribution == 'RedHat') }
