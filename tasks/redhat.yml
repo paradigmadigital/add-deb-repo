@@ -1,0 +1,21 @@
+---
+# tasks file for add-repo
+- name: Add repository with gpg key
+  become: yes
+  yum_repository:
+    name: "{{ repository.name }}"
+    description: "{{ repository.description }}"
+    baseurl: "{{ repository.url }}"
+    gpgkey: "{{ gpg_key.key_url }}"
+    gpgcheck: "{{ gpg_key.gpgcheck }}"
+  when: gpg_key.key_url is defined
+  changed_when: False
+
+- name: Add repository without a gpg key
+  become: yes
+  yum_repository:
+    name: "{{ repository.name }}"
+    description: "{{ repository.description }}"
+    baseurl: "{{ repository.url }}"
+  when: gpg_key.key_url is not defined
+  changed_when: False

@@ -1,0 +1,9 @@
+---
+repository:
+  name: Mariadb
+  description: Mariadb repository
+  url: "https://yum.mariadb.org/10.2/{{ ansible_distribution }}{{ ansible_distribution_version }}-amd64"
+  options: main
+gpg_key:
+  key_url: https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+  gpgcheck: yes

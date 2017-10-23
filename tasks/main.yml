@@ -1,24 +1,14 @@
 ---
-# tasks file for add-deb-repo
+# tasks file for add-repo
+- name: Include vars
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}-{{ ansible_distribution_major_version | int }}.yml"
+    - "{{ ansible_distribution | lower }}.yml"
+    - "{{ ansible_os_family }}.yml"
+    - "default.yml"
+  when: repository is undefined or gpg_key is undefined
 
-- name: Add repository gpg key by server url
-  become: true
-  apt_key:
-    keyserver: "{{ gpg_key.repository_url }}"
-    id: "{{ gpg_key.id }}"
-    state: present
-  when: gpg_key.repository_url is defined
-
-- name: Add repository gpg key by key url
-  become: true
-  apt_key:
-    url: "{{ gpg_key.key_url }}"
-    state: present
-  when: gpg_key.key_url is defined
-
-- name: Add repository
-  become: true
-  apt_repository:
-    repo: "deb {{ deb_repository.url }} {{ deb_repository.options}}"
-    state: present
-    update_cache: yes
+- name: Add the repository
+  include_tasks: "{{ansible_distribution | lower}}.yml"
+  #include: "{{ role_path }}/tasks/{{ansible_distribution | lower}}.yml"
